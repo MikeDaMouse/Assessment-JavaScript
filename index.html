@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+			integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+			crossorigin="anonymous"
+		/>
+
+		<script
+			src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+			integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+			crossorigin="anonymous"
+		></script>
+
+		<script
+			src="https://kit.fontawesome.com/108c71d766.js"
+			;
+			crossorigin="anonymous"
+		></script>
+		<style>
+			#distractContainer {
+				position: relative;
+				margin-top: 10rem;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				width: 100vw;
+			}
+			#distractBox {
+				width: 20rem;
+				height: 10rem;
+				border: 1px solid black;
+				position: relative;
+				box-sizing: border-box;
+				background-size: contain;
+
+				margin: auto;
+			}
+			#floatingBox {
+				width: 3rem;
+				height: 3rem;
+				background-color: red;
+				position: absolute;
+				top: 0;
+				left: 0;
+				animation: float 5s infinite linear;
+			}
+			#score {
+				position: relative;
+				margin: auto;
+			}
+
+			@keyframes float {
+				0% {
+					top: 0;
+					left: 0;
+				}
+				25% {
+					top: 0;
+					left: calc(100% - 50px);
+				}
+				50% {
+					top: calc(100% - 50px);
+					left: calc(100% - 50px);
+				}
+				75% {
+					top: calc(100% - 50px);
+					left: 0;
+				}
+				100% {
+					top: 0;
+					left: 0;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container-fluid border-bottom">
+			<h1 class="display-1 text-center bg-primary text-white">
+				MANAGE-YOU!<i class="fa-solid fa-check-double"></i>
+			</h1>
+			<div class="row justify-content-center">
+				<div class="input-group mb-3 w-50">
+					<input
+						type="text"
+						id="mainInput"
+						class="form-control"
+						placeholder="New Task"
+						aria-label="Task Description"
+						aria-describedby="basic-addon2"
+					/>
+					<div class="input-group-append">
+						<button
+							onclick="addNewTask()"
+							class="btn btn-warning"
+							type="submit"
+						>
+							<i class="fa-solid fa-plus"></i>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="row justify-content-center g-0">
+				<div class="col-sm text-center">
+					<h6 class="display-6 text-center text-success">ACTIVE</h6>
+					<div id="activeTask"></div>
+				</div>
+				<div class="vr mx-3"></div>
+				<div class="col-sm text-center">
+					<h6 class="display-6 text-center text-danger">COMPLETED</h6>
+					<div id="completeTask"></div>
+					<div id="clearTask"></div>
+				</div>
+			</div>
+		</div>
+		<div
+			class="modal fade"
+			id="clearTaskModal"
+			tabindex="-1"
+			aria-labelledby="exampleModalLabel"
+			aria-hidden="true"
+		>
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h1 class="modal-title fs-5" id="exampleModalLabel">
+							Are you sure you want to clear your completed tasks?
+						</h1>
+						<button
+							type="button"
+							class="btn-close"
+							data-bs-dismiss="modal"
+							aria-label="Close"
+						></button>
+					</div>
+					<div class="modal-body text-center">
+						This action is not reversible
+					</div>
+					<div class="modal-footer">
+						<button
+							type="button"
+							class="btn btn-secondary"
+							data-bs-dismiss="modal"
+						>
+							Cancel
+						</button>
+						<button
+							type="button"
+							class="btn btn-primary"
+							data-bs-dismiss="modal"
+							onclick="clearTasks()"
+						>
+							Clear Tasks
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="distractContainer">
+			<h6 class="text-center text-danger">BEWARE THE DISTRACTION BOX!!!</h6>
+			<div id="score"></div>
+			<div id="distractBox">
+				<div id="floatingBox" onclick="clickGame()"></div>
+			</div>
+		</div>
+
+		<script src="script.js" type="module"></script>
+	</body>
+</html>
